@@ -1,0 +1,104 @@
+doctype html
+head
+  meta(charset='utf-8')
+  meta(http-equiv='X-UA-Compatible' content='IE=edge')
+  meta(name='viewport' content='width=device-width, initial-scale=1')
+  link(href='https://fonts.googleapis.com/css?family=Roboto:400,700' rel='stylesheet')
+  title Bootstrap Simple Registration Form
+  link(rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css')
+  link(rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css')
+  script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js')
+  
+  script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js')
+  script(type='text/javascript').
+        $(function(){
+            
+            
+                $('button.delete').click(function(e){
+                    e.preventDefault();
+                    var page = $(this).attr('data-page');
+                    console.log(page)
+                    var data = {};
+                    data.email=page
+                    $.ajax({
+                        type: 'POST',
+                        data: JSON.stringify(data),
+                        contentType: 'application/json',
+                        url: 'http://localhost:3000/endpoint',
+                        success: function(data) {
+                            console.log(data)
+                            location.reload(true);
+                            }
+                            });
+                            });
+                            $('button.update').click(function(e){
+                                e.preventDefault();
+                                var page = $(this).attr('data-page');
+                                console.log(page)
+                                window.location.replace("/updateuser/"+page)
+                    
+                            });
+                            $('button.search').click(function(e){
+                                e.preventDefault();
+                                var str = $("#searchtext").val();
+                                
+                                window.location.replace("/search/"+str)
+                    
+                            });
+                    
+
+            
+                	
+                            })
+  
+  style.
+    body {
+    color: #fff;
+    background: #63738a;
+    font-family: 'Roboto', sans-serif;
+    }
+    /* Modify the background color */
+    .navbar-custom {
+    background-color: #A90505;
+    border-left: 6px solid #1423A4;
+    }
+    .myuse {
+        font-size: '45px';
+        color: black
+        
+    }
+    .myuse2 {
+        font-size: '25px';
+        color: black
+        
+    }
+    
+    
+    
+nav.navbar.navbar-inverse.navbar.navbar-custom
+  .container-fluid
+    .navbar-header
+      a.navbar-brand(style='color: #FEFEFE ; font-family: Times, serif; font-weight: bold; font-size: 25px' href='#') Web Assignment 2
+    ul.nav.navbar-nav
+      li
+        a(style='color: #FEFEFE ; font-family: Times, serif; font-weight: bold; font-size: 25px' href='/showusers') Show Users
+      li
+        a(style='color: #FEFEFE ; font-family: Times, serif; font-weight: bold; font-size: 25px' href='/createuser') Create User
+      
+      
+.stu 
+        
+        .form-group
+        input.form-control(type='text' id='searchtext' class='searchtext' placeholder='Search User by entering first name' name='search')
+        button.btn.btn-success(type='submit' id='search' class='search') Search
+        each item in docs
+           #WTH.jumbotron
+               
+               h8(id="myuse" class="myuse" name="title" href="" )= item.firstname + item.lastname 
+               p(id="myuse2" class="myuse2")= item.email
+               button.btn.btn-danger(type='button' id='delete' class='delete' data-page=item.email) Delete
+               button.btn.btn-warning(type='button' id='update' class='update' data-page=item.email ) Update
+               
+       
+      
+  
